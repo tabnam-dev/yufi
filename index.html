@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسالة عيد ميلاد</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9ecf,#ffd6eb,#fff0f7);
+    overflow:hidden;
+}
+
+.container{
+    text-align:center;
+}
+
+.envelope{
+    position:relative;
+    width:320px;
+    height:220px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+    overflow:hidden;
+}
+
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:120px;
+    background:#ff6fa9;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+.content{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    padding:20px;
+}
+
+h2{
+    color:#d63384;
+    margin-bottom:15px;
+}
+
+input{
+    width:80%;
+    padding:12px;
+    border:none;
+    border-radius:25px;
+    text-align:center;
+    font-size:18px;
+    background:#ffe5f0;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 30px;
+    border:none;
+    border-radius:25px;
+    background:#ff4f94;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.message{
+    display:none;
+    width:90%;
+    max-width:500px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+    animation:fadeIn 1s ease;
+}
+
+.message h1{
+    color:#d63384;
+    margin-bottom:20px;
+}
+
+.message p{
+    line-height:2;
+    color:#444;
+    font-size:18px;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+
+.heart{
+    position:absolute;
+    color:#ff4f94;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container" id="loginBox">
+    <div class="envelope">
+        <div class="flap"></div>
+
+        <div class="content">
+            <h2>💌 رسالة خاصة</h2>
+            <input type="text" id="password" placeholder="أدخل كلمة المرور">
+            <br>
+            <button onclick="openLetter()">فتح الرسالة</button>
+        </div>
+    </div>
+</div>
+
+<div class="message" id="messageBox">
+    <h1>🎂 عيد ميلاد سعيد</h1>
+
+    <p>
+        في هذا اليوم الجميل، لا أتمنى لك مجرد سنة جديدة من العمر،
+        بل أتمنى لك سنة مليئة بالطمأنينة والفرح والنجاحات التي تستحقها.
+        <br><br>
+        أتمنى أن تبقى الابتسامة رفيقة أيامك،
+        وأن تجد في كل خطوة سبباً جديداً للأمل والسعادة.
+        <br><br>
+        كل عام وأنت شخص مميز يترك أثراً جميلاً في قلوب من حوله،
+        وكل عام وأحلامك تقترب أكثر من أن تصبح واقعاً.
+        <br><br>
+        🌹 عيد ميلاد سعيد، وعسى أيامك القادمة أجمل من كل ما مضى.
+        🌹
+    </p>
+</div>
+
+<script>
+function openLetter(){
+    const pass = document.getElementById("password").value.trim();
+
+    if(pass === "يوفي"){
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("messageBox").style.display = "block";
+    }else{
+        alert("كلمة المرور غير صحيحة ❤️");
+    }
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (15 + Math.random()*25) + "px";
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+}
+
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
